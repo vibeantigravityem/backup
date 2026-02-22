@@ -1,0 +1,159 @@
+{
+  "updatedAt": "2026-01-24T17:19:36.114Z",
+  "createdAt": "2026-01-24T15:35:58.168Z",
+  "id": "4tu8fvM5f68AYdYEF3UOA",
+  "name": "AI-Automation-Airtable",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Room",
+        "formDescription": "What room do you like?",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Your name",
+              "placeholder": "type your name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "What room do you like?",
+              "fieldType": "checkbox",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Standard room"
+                  },
+                  {
+                    "option": "Deluxe room"
+                  },
+                  {
+                    "option": "Suite"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0465ef8e-9dcf-4133-8891-bbea9053048e",
+      "name": "On form submission",
+      "webhookId": "d950c4ee-3c75-4eeb-bc4b-1444d7ae9ddf"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appO0K67ftbJQzbyb",
+          "mode": "list",
+          "cachedResultName": "Untitled Base",
+          "cachedResultUrl": "https://airtable.com/appO0K67ftbJQzbyb"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblNz3ZPigW9zQml9",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appO0K67ftbJQzbyb/tblNz3ZPigW9zQml9"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json['Your name'] }}",
+            "Room": "={{ $json['What room do you like?'][0] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Room",
+              "displayName": "Room",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "a5119e75-3fed-4903-bb0a-665e6ab410f8",
+      "name": "Create a record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "cs64HD7SIHn04UA9",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Create a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "0f9c35fa-52a6-41cc-a4dc-26081039e7e2",
+  "activeVersionId": null,
+  "triggerCount": 1,
+  "shared": [
+    {
+      "updatedAt": "2026-01-24T15:35:58.184Z",
+      "createdAt": "2026-01-24T15:35:58.184Z",
+      "role": "workflow:owner",
+      "workflowId": "4tu8fvM5f68AYdYEF3UOA",
+      "projectId": "BmMpVuq1B9sIgOOL"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
