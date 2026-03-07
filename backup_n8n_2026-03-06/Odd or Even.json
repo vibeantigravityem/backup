@@ -1,0 +1,166 @@
+{
+  "updatedAt": "2024-12-26T21:04:52.000Z",
+  "createdAt": "2024-12-26T20:45:34.643Z",
+  "id": "vNorOjCpBLPvipbC",
+  "name": "Odd or Even",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Odd or Even",
+        "formDescription": "It tells you if the number is odd or even.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Type a number",
+              "fieldType": "number",
+              "placeholder": "1, 2, 3...",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "5d94f00f-964a-4419-a08a-143e5b1bdd7b",
+      "name": "On form submission",
+      "webhookId": "83f412c2-e365-4a9a-a5e2-518897fff7b0"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "fa8c08ea-8b01-44ff-b798-0a5a1eec48c4",
+              "leftValue": "={{ $json['Type a number'] % 2}}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "5c7f1fac-65a2-4c6e-a579-c59192f421e8",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "79228d41-b3e7-4340-ade8-bb512720f05e",
+              "name": "The number is even",
+              "value": "={{ $json['Type a number'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        -100
+      ],
+      "id": "6c201695-506f-4a2c-8ad2-d6fafccfce18",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "79228d41-b3e7-4340-ade8-bb512720f05e",
+              "name": "The number is odd",
+              "value": "={{ $json['Type a number'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        100
+      ],
+      "id": "25990aec-747a-414e-8d9c-3e82175532bb",
+      "name": "Edit Fields1"
+    }
+  ],
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "71e708ba-aa4e-4c42-8ea5-5063c469c9f7",
+  "activeVersionId": null,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2024-12-26T20:45:34.651Z",
+      "createdAt": "2024-12-26T20:45:34.651Z",
+      "role": "workflow:owner",
+      "workflowId": "vNorOjCpBLPvipbC",
+      "projectId": "BmMpVuq1B9sIgOOL"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
