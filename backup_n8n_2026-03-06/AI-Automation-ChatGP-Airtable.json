@@ -1,0 +1,178 @@
+{
+  "updatedAt": "2026-01-25T16:14:18.683Z",
+  "createdAt": "2026-01-24T21:30:46.487Z",
+  "id": "GP-LBCUVlQNDOYCSapn5N",
+  "name": "AI-Automation-ChatGP-Airtable",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "authentication": "airtableTokenApi",
+        "baseId": {
+          "__rl": true,
+          "value": "https://airtable.com/appO0K67ftbJQzbyb/tbl49Wy92KcDhXKTD/viwZ8py5WbzmbuywK?blocks=hide",
+          "mode": "url"
+        },
+        "tableId": {
+          "__rl": true,
+          "value": "https://airtable.com/appO0K67ftbJQzbyb/tbl49Wy92KcDhXKTD/viwZ8py5WbzmbuywK?blocks=hide",
+          "mode": "url"
+        },
+        "triggerField": "Order number",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.airtableTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "45da72b0-8594-4c7c-8baf-a2470d7d2b8a",
+      "name": "Airtable Trigger",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "cs64HD7SIHn04UA9",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-5-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are responsible for customer orders. Your task is to collect incoming information about new orders and create a clear summary that will be sent via email to the team.\nThe email should be signed with \"Customer Success Team\".\n\nHere are the details of the customer ordrs:\nOrder number:{{ $json.fields['Order number'] }}\nCustomer:{{ $json.fields.Customer }}\nProduct: {{ $json.fields.Product }}\nQuantity:{{ $json.fields.Quantity }}\nPrice:{{ $json.fields.Price }}\nDate:{{ $json.fields.Date }}\nStatus:{{ $json.fields.Status }}\n\nProvide the following output parameters in json format:\nemail_subject\nemail_body\n\nMake a clean body with new lines if needed. "
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "0f0c5c9c-b40f-4716-96b2-8663093ce884",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "8WN5JV6ynhyq7YaF",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract the JSON string inside the text field\nconst raw = $json.output[0].content[0].text;\n\n// Parse the inner JSON\nconst parsed = JSON.parse(raw);\n\n// Clone the original item\nconst newItem = { ...$json };\n\n// Add the two new fields at the same level as \"text\"\nnewItem.output[0].content[0].email_subject = parsed.email_subject;\nnewItem.output[0].content[0].email_body = parsed.email_body;\n\nreturn [{ json: newItem }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        0
+      ],
+      "id": "40841b79-fefe-42d5-a13b-492e67dc4210",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "sendTo": "rj.rosag@gmail.com",
+        "subject": "={{ $json.output[0].content[0].email_subject }}",
+        "emailType": "text",
+        "message": "={{ $json.output[0].content[0].email_body }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        768,
+        0
+      ],
+      "id": "a2c31dc4-068f-4e71-98f1-66aad8ae869c",
+      "name": "Send a message",
+      "webhookId": "5cd863b8-0aad-4ada-ac47-56603108d75d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "0Z2jhr2BFedoy0oT",
+          "name": "Gmail account 2"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Airtable Trigger": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "900c7dfb-516c-467c-a274-cabca23b2aed",
+  "activeVersionId": null,
+  "triggerCount": 1,
+  "shared": [
+    {
+      "updatedAt": "2026-01-24T21:30:46.511Z",
+      "createdAt": "2026-01-24T21:30:46.511Z",
+      "role": "workflow:owner",
+      "workflowId": "GP-LBCUVlQNDOYCSapn5N",
+      "projectId": "BmMpVuq1B9sIgOOL"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
