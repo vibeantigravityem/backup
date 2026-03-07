@@ -1,0 +1,133 @@
+{
+  "updatedAt": "2026-01-24T20:14:31.729Z",
+  "createdAt": "2026-01-24T19:10:44.563Z",
+  "id": "Z4Nc4ci3zAJKxBWBh61cN",
+  "name": "AI-Automation-CronJob",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3f9cef23-f164-44ad-af56-199fd6d6feb3",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appO0K67ftbJQzbyb",
+          "mode": "list",
+          "cachedResultName": "Untitled Base",
+          "cachedResultUrl": "https://airtable.com/appO0K67ftbJQzbyb"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblNz3ZPigW9zQml9",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appO0K67ftbJQzbyb/tblNz3ZPigW9zQml9"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "2241b36b-3038-4431-b2f5-94a1cedb5363",
+      "name": "Search records",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "cs64HD7SIHn04UA9",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "Room",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "25979c92-a830-40a6-add5-f7b92cb4432f",
+      "name": "Convert to File"
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Search records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search records": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "57cca696-c3ad-473b-9307-2978f50330ce",
+  "activeVersionId": null,
+  "triggerCount": 1,
+  "shared": [
+    {
+      "updatedAt": "2026-01-24T19:10:44.570Z",
+      "createdAt": "2026-01-24T19:10:44.570Z",
+      "role": "workflow:owner",
+      "workflowId": "Z4Nc4ci3zAJKxBWBh61cN",
+      "projectId": "BmMpVuq1B9sIgOOL"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
