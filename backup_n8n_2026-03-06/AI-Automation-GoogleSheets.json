@@ -1,0 +1,78 @@
+{
+  "updatedAt": "2026-01-24T21:29:37.590Z",
+  "createdAt": "2026-01-24T20:31:37.554Z",
+  "id": "6m_jWfc7lfEkLZMLz5A5n",
+  "name": "AI-Automation-GoogleSheets",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "fdde0204-4b2a-46e8-a32a-e32399baebf0",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "title": "AI Automation - test",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "836dfe1f-ea43-4e5c-b9c6-ced0118580f3",
+      "name": "Create spreadsheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XBCWefwGEOwqT2s6",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Create spreadsheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "ad77f345-e917-46c2-91d9-62713b0657e3",
+  "activeVersionId": null,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2026-01-24T20:31:37.568Z",
+      "createdAt": "2026-01-24T20:31:37.568Z",
+      "role": "workflow:owner",
+      "workflowId": "6m_jWfc7lfEkLZMLz5A5n",
+      "projectId": "BmMpVuq1B9sIgOOL"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
