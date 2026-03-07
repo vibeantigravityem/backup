@@ -1,0 +1,73 @@
+{
+  "updatedAt": "2024-12-26T22:31:02.000Z",
+  "createdAt": "2024-12-26T21:44:21.817Z",
+  "id": "ol0gOk262XvqMZHN",
+  "name": "GoogleSlides",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0f3fb045-0d71-4e83-9a25-c38585abe997",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "title": "Test"
+      },
+      "type": "n8n-nodes-base.googleSlides",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "a70b9e35-753a-4324-81ae-98b745ac5b90",
+      "name": "Google Slides",
+      "credentials": {
+        "googleSlidesOAuth2Api": {
+          "id": "eHoP1zABG4dkLTNt",
+          "name": "Google Slides account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Slides",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "ea8e38c8-b396-444f-9a5c-84b41254a1db",
+  "activeVersionId": null,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2024-12-26T21:44:21.824Z",
+      "createdAt": "2024-12-26T21:44:21.824Z",
+      "role": "workflow:owner",
+      "workflowId": "ol0gOk262XvqMZHN",
+      "projectId": "BmMpVuq1B9sIgOOL"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
