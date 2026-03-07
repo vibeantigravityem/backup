@@ -1,0 +1,85 @@
+{
+  "updatedAt": "2026-02-22T12:47:15.933Z",
+  "createdAt": "2026-02-22T12:20:34.180Z",
+  "id": "y6VsLJyv3riRXB9_i9Aa-",
+  "name": "n8n-backup2github-file",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "cb4aa3b5-9fcb-4618-8734-797eae9ad37f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "title": "n8n-backup-logs",
+        "sheetsUi": {
+          "sheetValues": [
+            {
+              "title": "failures"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "42ee21b8-7520-4d07-a2f0-8ec42d084805",
+      "name": "Create spreadsheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "mE7hfAbe3vs7cAmN",
+          "name": "Google Sheets account 3"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Create spreadsheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "1555adb3-4b38-4d67-b20a-55b12f9de276",
+  "activeVersionId": null,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2026-02-22T12:20:34.184Z",
+      "createdAt": "2026-02-22T12:20:34.184Z",
+      "role": "workflow:owner",
+      "workflowId": "y6VsLJyv3riRXB9_i9Aa-",
+      "projectId": "BmMpVuq1B9sIgOOL"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
